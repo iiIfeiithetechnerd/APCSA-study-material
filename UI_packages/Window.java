@@ -2,9 +2,9 @@ import javax.swing.*;
 
 public class Window {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("My Java GUI");
+        JFrame frame = new JFrame("APCSA Study Material");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300, 200);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         JButton button = new JButton("Click Me");
         frame.getContentPane().add(button);
