@@ -12,6 +12,19 @@ if (-not (Get-Command "make" -ErrorAction SilentlyContinue)) {
     }
 }
 
+if (-not (Get-Command "javac" -ErrorAction SilentlyContinue)) {
+    Write-Host "[-] Java is not installed. Installing JDK via winget..."
+
+    winget install Microsoft.OpenJDK.21 --silent --accept-source-agreements --accept-package-agreements
+
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+    
+    if (-not (Get-Command "javac" -ErrorAction SilentlyContinue)) {
+        Write-Error "[!] javac not found in PATH. Please restart your terminal!"
+        Exit 1
+    }
+}
+
 Write-Host "[+] Make is installed. Compiling required files..." 
 make windows
 
